@@ -72,7 +72,7 @@ async function run() {
 
   const app = express()
   app.use(engine.expressMiddleware());
-  app.use('/graphql', cors(), bodyParser.json(), graphqlExpress({ schema: schema, tracing: true, cacheControl: true }))
+  app.use('/graphql', cors(), bodyParser.json(), graphqlExpress({ schema: schema, tracing: true }))
   app.use('/playground', playground({ endpoint: '/graphql' }))
 
   app.listen(3000, () => console.log('Server running. Open http://localhost:3000/playground to run queries.'))
