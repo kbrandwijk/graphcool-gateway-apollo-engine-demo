@@ -17,14 +17,14 @@ async function run() {
   engine.start();
 
   // Create schemas from remote endpoints
-  const postEndpoint = process.env.GRAPHCOOL_POST_ENDPOINT
+  const postEndpoint = process.env.GRAPHCOOL_POST_ENDPOINT || 'https://api.graph.cool/simple/v1/apollo-engine-demo-posts'
   const postLink = new HttpLink({ uri: postEndpoint, fetch })
   const postSchema = makeRemoteExecutableSchema({
     schema: await introspectSchema(postLink),
     link: postLink,
   })
 
-  const commentsEndpoint = process.env.GRAPHCOOL_COMMENT_ENDPOINT
+  const commentsEndpoint = process.env.GRAPHCOOL_COMMENT_ENDPOINT || 'https://api.graph.cool/simple/v1/apollo-engine-demo-comments'
   const commentsLink = new HttpLink({ uri: commentsEndpoint, fetch })
   const commentsSchema = makeRemoteExecutableSchema({
     schema: await introspectSchema(commentsLink),
