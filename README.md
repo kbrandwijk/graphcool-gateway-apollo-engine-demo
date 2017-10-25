@@ -1,6 +1,6 @@
 # graphcool-gateway-apollo-engine-demo
 
-This demo demonstrates using Apollo Engine with the Graphcool API Gateway pattern. TL;DR: This does not work as expected...
+This demo demonstrates using Apollo Engine with the Graphcool API Gateway pattern. It contains a simple example with one endpoint, and an advanced example that stitches together two endpoints.
 
 ## Simple example
 
