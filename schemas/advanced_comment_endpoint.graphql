@@ -1,0 +1,5 @@
+type Comment @model {
+  id: ID! @isUnique
+  description: String!
+  postId: String!
+}

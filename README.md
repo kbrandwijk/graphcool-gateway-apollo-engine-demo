@@ -2,7 +2,9 @@
 
 This demo demonstrates using Apollo Engine with the Graphcool API Gateway pattern. TL;DR: This does not work as expected...
 
-## Setup
+## Simple example
+
+### Setup
 
 - Register on https://www.apollographql.com/engine/
 
@@ -38,6 +40,23 @@ APOLLO_ENGINE_KEY=service:xxx:.......
 ![image](https://user-images.githubusercontent.com/852069/32006961-81139d32-b9a8-11e7-9d45-43d18029421f.png)
 
 
-## Notes
+### Notes
 
 - Unfortunately, `makeRemoteExecutableSchema` turns every query into a single request to the underlying API (our Graphcool API). This means the metrics will not show any useful data about how your query is actually executed by the Graphcool server. It does, however, give you an overall indication of relative performance.
+
+## Advanced example
+
+The advanced example combines two different endpoints, one with Posts, and one with Comments. Now, the tracing from Apollo Engine becomes a lot more interesting. I selected two different regions to illustrate the difference between the two endpoints.
+
+![image](https://user-images.githubusercontent.com/852069/32010110-2b7566c2-b9b1-11e7-82d5-03fa6a439ab9.png)
+
+- Create a `.env` file in the root of your project folder with the following keys:
+  - `GRAPHCOOL_POST_ENDPOINT`
+  - `GRAPHCOOL_COMMENT_ENDPOINT`
+  - `APOLLO_ENGINE_KEY`
+
+- Use the schemas from the `schemas` folder to set up your endpoints
+
+- Start with `yarn start:merged` or `npm start:merged`
+
+![image](https://user-images.githubusercontent.com/852069/32010386-f036dde2-b9b1-11e7-8439-2156f59c06ff.png)
