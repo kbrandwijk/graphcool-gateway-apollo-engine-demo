@@ -54,8 +54,8 @@ The advanced example combines two different endpoints, one with Posts, and one w
   - `GRAPHCOOL_POST_ENDPOINT`
   - `GRAPHCOOL_COMMENT_ENDPOINT`
   - `APOLLO_ENGINE_KEY`
-
-  > If you leave out the endpoint keys, it will use two demo endpoints (read-only)
+  
+> If you leave out the endpoint keys, it will use two demo endpoints (read-only)
 
 - Use the schemas from the `schemas` folder to set up your endpoints
 
