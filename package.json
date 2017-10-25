@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon --ext ts --exec ts-node index.ts"
+    "start": "nodemon --ext ts --exec node ./node_modules/ts-node/dist/bin index.ts"
   },
   "dependencies": {
     "@types/node-fetch": "^1.6.7",
