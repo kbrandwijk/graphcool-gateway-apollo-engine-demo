@@ -1,6 +1,6 @@
 # graphcool-gateway-apollo-engine-demo
 
-This demo demonstrates using Apollo Engine with the Graphcool API Gateway pattern. It contains a simple example with one endpoint, and an advanced example that stitches together two endpoints.
+This demo demonstrates using Apollo Engine with the Graphcool API Gateway pattern. It contains a simple example with one endpoint, and an advanced example that stitches together two endpoints. It also contains an example that takes advantage of the new Apollo Cache Control.
 
 ## Simple example
 
@@ -60,3 +60,17 @@ The advanced example combines two different endpoints, one with Posts, and one w
 - Start with `yarn start:merged` or `npm start:merged`
 
 ![image](https://user-images.githubusercontent.com/852069/32010386-f036dde2-b9b1-11e7-8439-2156f59c06ff.png)
+
+## Caching example
+
+The caching example takes advantage of the new Apollo Cache Control standard, implemented by Apollo Server, and recognized by Apollo Engine. Based on caching hints delivered by Apollo Server, Apollo Engine applies intelligent caching to the queries.
+
+- Use the same set up as for the advanced example
+
+- Execute a query in the Playground. The first time, you will notice an extra result node, called `extensions`. This node contains caching hints.
+
+![image](https://user-images.githubusercontent.com/852069/32021728-7ccef15a-b9d4-11e7-9436-72cd6b790a61.png)
+
+- The second time the query runs, caching is applied by Apollo Engine, and the results are returned immediately. This is reflected in the Apollo Engine report. The first request took 792 ms, the second request 1 ms, thanks to the inmemory local cache from Apollo Engine:
+
+![image](https://user-images.githubusercontent.com/852069/32022047-8bc4376e-b9d5-11e7-8ed6-48f7e0d18118.png)
