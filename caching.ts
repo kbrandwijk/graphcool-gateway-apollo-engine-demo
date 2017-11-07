@@ -8,7 +8,7 @@ import { makeRemoteExecutableSchema, introspectSchema, mergeSchemas } from 'grap
 //import { transformSchema } from 'graphql-transform-schema'
 import { HttpLink } from 'apollo-link-http'
 import fetch from 'node-fetch'
-import { express as playground } from 'graphql-playground/middleware'
+import { expressPlayground } from 'graphql-playground-middleware'
 import { Engine } from 'apollo-engine'
 
 async function run() {
@@ -67,7 +67,7 @@ async function run() {
   resolvers: mergeInfo => ({
     Query: {
       getPosts: {
-        resolve(parent, args, context, info) {
+        resolve(parent:any, args:any, context:any, info:any) {
           return mergeInfo.delegate('query', 'allPosts', { }, context, info)
         },
       },
@@ -75,7 +75,7 @@ async function run() {
     Post: {
       comments: {
         fragment: `fragment PostFragment on Post { id }`,
-        resolve(parent, args, context, info) {
+        resolve(parent:any, args:any, context:any, info:any) {
           const postId = parent.id;
           return mergeInfo.delegate(
             'query', 'allComments', { filter: { postId }}, context, info
@@ -86,7 +86,7 @@ async function run() {
     Comment: {
       post: {
         fragment: `fragment CommentFragment on Comment { postId }`,
-        resolve(parent, args, context, info) {
+        resolve(parent:any, args:any, context:any, info:any) {
           const id = parent.id;
           return mergeInfo.delegate(
             'query', 'Post', { id }, context, info
@@ -105,7 +105,7 @@ async function run() {
   const app = express()
   app.use(engine.expressMiddleware());
   app.use('/graphql', cors(), bodyParser.json(), graphqlExpress({ schema: schema, tracing: true, cacheControl: true }))
-  app.use('/playground', playground({ endpoint: '/graphql' }))
+  app.use('/playground', expressPlayground({ endpoint: '/graphql' }))
 
   app.listen(3000, () => console.log('Server running. Open http://localhost:3000/playground to run queries.'))
 }

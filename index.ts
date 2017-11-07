@@ -7,7 +7,7 @@ import { graphqlExpress } from 'apollo-server-express'
 import { makeRemoteExecutableSchema, introspectSchema } from 'graphql-tools'
 import { HttpLink } from 'apollo-link-http'
 import fetch from 'node-fetch'
-import { express as playground } from 'graphql-playground/middleware'
+import { expressPlayground } from 'graphql-playground-middleware'
 import { Engine } from 'apollo-engine'
 
 async function run() {
@@ -27,7 +27,7 @@ async function run() {
   const app = express()
   app.use(engine.expressMiddleware());
   app.use('/graphql', cors(), bodyParser.json(), graphqlExpress({ schema: graphcoolSchema,tracing: true, cacheControl: true }))
-  app.use('/playground', playground({ endpoint: '/graphql' }))
+  app.use('/playground', expressPlayground({ endpoint: '/graphql' }))
 
   app.listen(3000, () => console.log('Server running. Open http://localhost:3000/playground to run queries.'))
 }
